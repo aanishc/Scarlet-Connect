@@ -2,9 +2,11 @@ import { Route, Routes, Navigate, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import MapView from './pages/MapView'
 import Navbar from './components/Navbar'
+import Profile from './pages/Profile' // make sure this file exists
 
 export default function App() {
   const location = useLocation()
+
   return (
     <div className="min-h-screen text-neutral-900">
       <Navbar />
@@ -12,6 +14,7 @@ export default function App() {
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/map" element={<MapView />} />
+          <Route path="/profile/:id" element={<Profile />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

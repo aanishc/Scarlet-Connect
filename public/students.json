@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "name": "Mia Scott",
+    "major": "Computer Science",
+    "year": "Junior",
+    "coords": [40.505, -74.451],
+    "avatar": "https://i.pravatar.cc/128?img=5",
+    "bio": "CS major interested in HCI and campus accessibility projects.",
+    "clubs": ["ACM", "RU Hacks"]
+  },
+  {
+    "id": "2",
+    "name": "Jordan Diubaldi",
+    "major": "Economics",
+    "year": "Senior",
+    "coords": [40.502, -74.457],
+    "avatar": "https://i.pravatar.cc/128?img=12",
+    "bio": "Econometrics + data viz fan. Coffee and pickup basketball.",
+    "clubs": ["Finance Society", "Data Science Club"]
+  },
+  {
+    "id": "3",
+    "name": "Brooke Anderson",
+    "major": "Mathematics",
+    "year": "Sophomore",
+    "coords": [40.499, -74.445],
+    "avatar": "https://i.pravatar.cc/128?img=24",
+    "bio": "Math + ML learning. Loves chess and bouldering.",
+    "clubs": ["Math Club"]
+  }
+]
