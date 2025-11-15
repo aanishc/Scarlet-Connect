@@ -1,4 +1,4 @@
-# Verizon Smart Campus Competition: Scarlet Connect — Demo Frontend
+# Verizon Smart Campus Competition: Scarlet Connect
 
 This is a demo frontend app for **Scarlet Connect**, built using **React**, **Vite**, **TailwindCSS**, and **Leaflet**.  
 The theme is inspired by **Rutgers University** colors — scarlet red and black.
