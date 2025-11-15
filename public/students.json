@@ -4,29 +4,50 @@
     "name": "Mia Scott",
     "major": "Computer Science",
     "year": "Junior",
-    "coords": [40.505, -74.451],
+    "coords": [40.50147, -74.44786],
     "avatar": "https://i.pravatar.cc/128?img=5",
     "bio": "CS major interested in HCI and campus accessibility projects.",
-    "clubs": ["ACM", "RU Hacks"]
+    "clubs": ["ACM", "RU Hacks"],
+    "locationLabel": "Seminary Place",
+    "timeAt": {
+      "Seminary Place": 35,
+      "Alexander Library": 120,
+      "College Ave Student Center": 50
+    },
+    "traits": { "study": 85, "social": 60, "clubs": 75, "sports": 30, "events": 55 }
   },
   {
     "id": "2",
-    "name": "Jordan Diubaldi",
+    "name": "Jordan Anderson",
     "major": "Economics",
     "year": "Senior",
-    "coords": [40.502, -74.457],
+    "coords": [40.50494, -74.45238],
     "avatar": "https://i.pravatar.cc/128?img=12",
     "bio": "Econometrics + data viz fan. Coffee and pickup basketball.",
-    "clubs": ["Finance Society", "Data Science Club"]
+    "clubs": ["Finance Society", "Data Science Club"],
+    "locationLabel": "Alexander Library",
+    "timeAt": {
+      "Seminary Place": 10,
+      "Alexander Library": 160,
+      "College Ave Student Center": 70
+    },
+    "traits": { "study": 78, "social": 65, "clubs": 68, "sports": 40, "events": 50 }
   },
   {
     "id": "3",
-    "name": "Brooke Anderson",
+    "name": "Emily Alexander",
     "major": "Mathematics",
     "year": "Sophomore",
-    "coords": [40.499, -74.445],
+    "coords": [40.50264, -74.45218],
     "avatar": "https://i.pravatar.cc/128?img=24",
     "bio": "Math + ML learning. Loves chess and bouldering.",
-    "clubs": ["Math Club"]
+    "clubs": ["Math Club"],
+    "locationLabel": "College Ave Student Center",
+    "timeAt": {
+      "Seminary Place": 20,
+      "Alexander Library": 110,
+      "College Ave Student Center": 80
+    },
+    "traits": { "study": 82, "social": 50, "clubs": 60, "sports": 35, "events": 45 }
   }
 ]
