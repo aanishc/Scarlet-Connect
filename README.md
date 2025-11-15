@@ -5,8 +5,8 @@ The theme is inspired by **Rutgers University** colors — scarlet red and black
 
 Scarlet Connect is a Rutgers-specific friend-making app that uses Verizon Smart Campus Concepts to help students naturally connect with people they already spend time around. By using NetID login and campus WiFi signals, the app detects how long users spend in Rutgers academic buildings (never dorms or off-campus) and anonymously matches students with others who share similar study spots, class locations, and schedules.
 
-Students can opt in or out at any time, and all location data appears only as anonymous “pings,” ensuring privacy while still enabling matches—similar to TikTok’s viewer profile system. The demo showcases real-time building pings, match percentages, and examples of how students with overlapping campus habits can become study buddies or friends.
----
+**Students can opt in or out at any time, and all location data appears only as anonymous “pings,” ensuring privacy while still enabling matches—similar to TikTok’s viewer profile system. The demo showcases real-time building pings, match percentages, and examples of how students with overlapping campus habits can become study buddies or friends.
+**---
 
 ## ⚙️ How to Run the App Locally
 
