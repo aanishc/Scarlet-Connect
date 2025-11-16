@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         scarlet: '#CC0033',
+        maroon: '#A70033',
         rutgers: {
           red: '#CC0033',
           black: '#000000',

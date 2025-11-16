@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "name": "Alexander Library",
+    "coords": [40.50494, -74.45238],
+    "timeStudied": 390
+  },
+  {
+    "id": "2",
+    "name": "College Ave Dining Hall",
+    "coords": [40.50264, -74.45218],
+    "timeStudied": 200
+  },
+  {
+    "id": "3",
+    "name": "Honors College",
+    "coords": [40.50147, -74.44786],
+    "timeStudied": 155
+  }
+]

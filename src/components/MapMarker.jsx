@@ -1,17 +1,6 @@
-import { Marker, Popup } from 'react-leaflet'
-import L from 'leaflet'
+import { useEffect, useRef, useState } from 'react'
+import { Circle, Popup, useMap } from 'react-leaflet'
 import { Link } from 'react-router-dom'
-
-// Leaflet marker icon
-const personIcon = new L.Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-})
 
 // “You” trait baseline (0–100). Override via localStorage key `youTraits`.
 const defaultYou = { study: 80, social: 55, clubs: 70, sports: 25, events: 50 }
@@ -41,12 +30,53 @@ function matchPercentCalibrated(a, b) {
   return clamped
 }
 
-export default function MapMarker({ person }) {
-  const you = getYouTraits()
-  const overall = matchPercentCalibrated(person.traits || {}, you)
+// Helper component to handle zoom-dependent circle radius
+// Uses metric radius (meters) so circles scale with the map zoom level
+function ZoomAwareCircleMarker({ center, person, overall }) {
+  const map = useMap()
+  const [radius, setRadius] = useState(200) // meters
+  const [visible, setVisible] = useState(true)
+
+  // Calculate radius based on zoom level
+  // At higher zoom, larger radius in meters; at low zoom, smaller or invisible
+  const calculateRadius = () => {
+    if (!map) return
+    const zoom = map.getZoom()
+    
+    // Minimum zoom to show circles (e.g., hide at zoom < 12)
+    if (zoom < 12) {
+      setVisible(false)
+      return
+    }
+    
+    setVisible(true)
+    
+    // Scale radius with zoom: grows as you zoom in at ~33% the exponential rate
+    // Base radius of ~150m at zoom 14, uses cubic root scaling for gentler growth
+    const baseRadius = 60
+    setRadius(Math.max(50, baseRadius)) // minimum 50m
+  }
+
+  useEffect(() => {
+    calculateRadius()
+    map.on('zoom', calculateRadius)
+    map.on('zoomend', calculateRadius)
+    return () => {
+      map.off('zoom', calculateRadius)
+      map.off('zoomend', calculateRadius)
+    }
+  }, [map])
+
+  if (!visible) {
+    return null // Circle is not rendered at low zoom
+  }
 
   return (
-    <Marker position={person.coords} icon={personIcon}>
+    <Circle
+      center={center}
+      radius={radius}
+      pathOptions={{ color: 'var(--scarlet-color)', fillColor: 'var(--scarlet-color)', fillOpacity: 0.3, weight: 2 }}
+    >
       <Popup closeButton>
         <div className="min-w-[240px]">
           {/* Header row with avatar and match badge */}
@@ -54,17 +84,17 @@ export default function MapMarker({ person }) {
             <img
               src={person.avatar}
               alt={person.name}
-              className="w-12 h-12 rounded-full object-cover border"
+              className="w-12 h-12 rounded-full object-cover border border-neutral-300"
             />
             <div className="flex-1">
-              <p className="font-semibold leading-tight">{person.name}</p>
+              <p className="font-semibold leading-tight text-neutral-900">{person.name}</p>
               <p className="text-xs text-neutral-600">
                 {person.major} • {person.year}
               </p>
             </div>
             <span
               className="text-xs font-bold px-2 py-1 rounded-full border"
-              style={{ background: '#FFFFFF', color: 'black', borderColor: '#CC0033' }}
+              style={{ background: '#FFFFFF', color: 'black', borderColor: 'var(--scarlet-color)' }}
               title="Overall match"
             >
               {overall}%
@@ -87,9 +117,9 @@ export default function MapMarker({ person }) {
               to={`/profile/${person.id}`}
               className="inline-flex items-center justify-center rounded-xl px-3 py-2 text-sm font-semibold border transition hover:opacity-80"
               style={{
-                background: '#CC0033',   // scarlet
-                color: 'black',           // black text
-                borderColor: '#CC0033',
+                background: 'var(--scarlet-color)',
+                color: 'white',
+                borderColor: 'var(--scarlet-color)',
               }}
             >
               View Profile
@@ -98,9 +128,9 @@ export default function MapMarker({ person }) {
               to={`/profile/${person.id}#dm`}
               className="inline-flex items-center justify-center rounded-xl px-3 py-2 text-sm font-semibold border transition hover:opacity-80"
               style={{
-                background: '#FFFFFF',    // white
-                color: 'black',           // black text
-                borderColor: '#CC0033',   // scarlet border
+                background: '#FFFFFF',
+                color: 'black',
+                borderColor: 'var(--scarlet-color)',
               }}
             >
               Message
@@ -108,6 +138,13 @@ export default function MapMarker({ person }) {
           </div>
         </div>
       </Popup>
-    </Marker>
+    </Circle>
   )
+}
+
+export default function MapMarker({ person }) {
+  const you = getYouTraits()
+  const overall = matchPercentCalibrated(person.traits || {}, you)
+
+  return <ZoomAwareCircleMarker center={person.coords} person={person} overall={overall} />
 }
